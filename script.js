@@ -1,105 +1,75 @@
-// Seleção de elementos
+// ----- BOTÃO TOPO -----
 const topBtn = document.getElementById('topBtn');
-const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('nav a');
-const heroText = document.querySelector('.hero-text');
-
-// --------- BOTÃO TOPO ---------
 window.addEventListener('scroll', () => {
-  // Mostrar/ocultar botão topo
-  if(window.scrollY > 300) {
-    topBtn.style.display = 'block';
-  } else {
-    topBtn.style.display = 'none';
-  }
+  topBtn.style.display = (window.scrollY > 300) ? 'block' : 'none';
 
-  // Animação fade-in seções
-  sections.forEach(section => {
-    const top = section.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-    if(top < windowHeight - 100) {
+  // Mostrar seções com animação
+  document.querySelectorAll('.section').forEach(section => {
+    if(section.getBoundingClientRect().top < window.innerHeight - 100){
       section.classList.add('show');
     }
   });
 
   // Destacar link do menu
-  sections.forEach(section => {
-    const id = section.getAttribute('id');
-    const top = section.getBoundingClientRect().top;
-    if(top <= 150 && top >= -section.offsetHeight + 150) {
-      navLinks.forEach(link => link.classList.remove('active'));
-      const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+  document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(section => {
+    if(section.getBoundingClientRect().top <= 150){
+      const activeLink = document.querySelector(`nav a[href="#${section.id}"]`);
       if(activeLink) activeLink.classList.add('active');
     }
   });
 });
 
-// Scroll suave botão topo
 topBtn.addEventListener('click', () => {
-  window.scrollTo({top: 0, behavior: 'smooth'});
+  window.scrollTo({top:0, behavior:'smooth'});
 });
 
-// --------- LIGHTBOX GALERIA ---------
-const galleryImages = document.querySelectorAll('.gallery img');
-galleryImages.forEach(img => {
+// ----- LIGHTBOX GALERIA -----
+document.querySelectorAll('.gallery img').forEach(img => {
   img.addEventListener('click', () => {
     const lightbox = document.createElement('div');
     lightbox.id = 'lightbox';
-    lightbox.style.position = 'fixed';
-    lightbox.style.top = '0';
-    lightbox.style.left = '0';
-    lightbox.style.width = '100%';
-    lightbox.style.height = '100%';
-    lightbox.style.background = 'rgba(0,0,0,0.8)';
-    lightbox.style.display = 'flex';
-    lightbox.style.alignItems = 'center';
-    lightbox.style.justifyContent = 'center';
-    lightbox.style.zIndex = '1000';
+    Object.assign(lightbox.style, {
+      position: 'fixed',
+      top:0, left:0,
+      width:'100%',
+      height:'100%',
+      background:'rgba(0,0,0,0.85)',
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center',
+      zIndex:'1000',
+      cursor:'pointer'
+    });
     lightbox.addEventListener('click', () => lightbox.remove());
-
+    
     const imgClone = img.cloneNode();
-    imgClone.style.maxWidth = '90%';
-    imgClone.style.maxHeight = '90%';
-    imgClone.style.borderRadius = '10px';
+    imgClone.style.maxWidth='90%';
+    imgClone.style.maxHeight='90%';
+    imgClone.style.borderRadius='10px';
     lightbox.appendChild(imgClone);
-
     document.body.appendChild(lightbox);
   });
 });
 
-// --------- TYPING EFFECT HERO ---------
-const phrases = ["Explore praias paradisíacas", "Descubra a cultura vibrante", "Mergulhe na história fascinante"];
-let i = 0;
-let j = 0;
-let currentPhrase = '';
-let isDeleting = false;
+// ----- TYPING HERO -----
+const typingEl = document.querySelector('.typing');
+const phrases = ["praias paradisíacas", "cultura vibrante", "história fascinante"];
+let i=0, j=0, current='', isDeleting=false;
 
 function type() {
-  const heroP = heroText.querySelector('p');
-  if(!heroP) return;
-  
-  if(i >= phrases.length) i = 0;
-  const fullPhrase = phrases[i];
-
-  if(!isDeleting) {
-    currentPhrase = fullPhrase.slice(0, j+1);
-    heroP.textContent = currentPhrase;
+  const full = phrases[i];
+  if(!isDeleting){
+    current = full.slice(0,j+1);
+    typingEl.textContent = current;
     j++;
-    if(j === fullPhrase.length) {
-      isDeleting = true;
-      setTimeout(type, 1500);
-      return;
-    }
+    if(j === full.length){ isDeleting=true; setTimeout(type,1500); return; }
   } else {
-    currentPhrase = fullPhrase.slice(0, j-1);
-    heroP.textContent = currentPhrase;
+    current = full.slice(0,j-1);
+    typingEl.textContent = current;
     j--;
-    if(j === 0) {
-      isDeleting = false;
-      i++;
-    }
+    if(j===0){ isDeleting=false; i++; if(i>=phrases.length)i=0;}
   }
-  setTimeout(type, isDeleting ? 50 : 100);
+  setTimeout(type, isDeleting?50:120);
 }
-
 type();

@@ -10,38 +10,49 @@
 
 <header>
   <h1>Guia Turístico de Cabo Verde</h1>
-  <p>Descubra as belezas e cultura das ilhas de Cabo Verde</p>
+  <p class="hero-subtitle">Explore <span class="typing"></span></p>
 </header>
 
 <nav>
-  <a href="#inicio">Início</a>
+  <a href="#inicio" class="active">Início</a>
   <a href="#ilhas">Ilhas</a>
   <a href="#galeria">Galeria</a>
-  <a href="#contato">Contato</a>
 </nav>
 
 <!-- Hero -->
 <section id="inicio" class="hero">
-  <div class="hero-text animate">
-    <h2>Bem-vindo a Cabo Verde</h2>
-    <p>Explore praias paradisíacas, cultura vibrante e história fascinante.</p>
-    <a href="#ilhas" class="btn">Descubra as Ilhas</a>
-  </div>
+  <div class="hero-overlay"></div>
 </section>
 
 <!-- Ilhas -->
-<section id="ilhas" class="section animate">
+<section id="ilhas" class="section">
   <h2>Principais Ilhas</h2>
-  <ul>
-    <li>São Vicente – cultura musical e carnaval</li>
-    <li>Sal – praias e resorts</li>
-    <li>Boa Vista – turismo de aventura e dunas</li>
-    <li>Santiago – capital Praia e história</li>
-  </ul>
+  <div class="ilhas-grid">
+    <div class="ilha-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Sao_Vicente_Cabo_Verde.jpg" alt="São Vicente">
+      <h3>São Vicente</h3>
+      <p>Cultura musical e carnaval vibrante</p>
+    </div>
+    <div class="ilha-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Sal_Cabo_Verde.jpg" alt="Sal">
+      <h3>Sal</h3>
+      <p>Praias paradisíacas e resorts luxuosos</p>
+    </div>
+    <div class="ilha-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Boa_Vista_Cabo_Verde.jpg" alt="Boa Vista">
+      <h3>Boa Vista</h3>
+      <p>Dunas, aventura e ecoturismo</p>
+    </div>
+    <div class="ilha-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Santiago_Cabo_Verde.jpg" alt="Santiago">
+      <h3>Santiago</h3>
+      <p>História rica e capital Praia</p>
+    </div>
+  </div>
 </section>
 
 <!-- Galeria -->
-<section id="galeria" class="section animate">
+<section id="galeria" class="section">
   <h2>Galeria</h2>
   <div class="gallery">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Sao_Vicente_Cabo_Verde.jpg" alt="São Vicente">
@@ -49,18 +60,6 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Boa_Vista_Cabo_Verde.jpg" alt="Boa Vista">
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Santiago_Cabo_Verde.jpg" alt="Santiago">
   </div>
-</section>
-
-<!-- Contato -->
-<section id="contato" class="section animate">
-  <h2>Contato</h2>
-  <p>Envie suas dúvidas ou sugestões sobre Cabo Verde.</p>
-  <form>
-    <input type="text" placeholder="Nome" required>
-    <input type="email" placeholder="Email" required>
-    <textarea placeholder="Mensagem" required></textarea>
-    <button type="submit">Enviar</button>
-  </form>
 </section>
 
 <button id="topBtn">⬆️</button>
