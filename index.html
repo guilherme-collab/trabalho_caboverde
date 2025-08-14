@@ -4,69 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Roteiro Boa Vista - Cabo Verde</title>
-
 <style>
-  /* Reset e fonte */
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-  body { scroll-behavior: smooth; color:#333; background:#f9f9f9; }
-
-  /* MENU LATERAL FIXO */
-  .menu {
-    position: fixed; top:0; left:0; width:220px; height:100%; background:#ff8c42;
-    padding-top:30px; z-index:1000; box-shadow:2px 0 10px rgba(0,0,0,0.2);
-  }
-  .menu ul { list-style:none; display:flex; flex-direction:column; }
-  .menu ul li { margin-bottom:10px; }
-  .menu ul li a {
-    display:block; padding:12px 20px; color:white; text-decoration:none;
-    font-weight:bold; border-radius:8px; transition:0.3s;
-  }
-  .menu ul li a.active, .menu ul li a:hover { background:#e64a19; }
-
-  /* CONTEÚDO PRINCIPAL */
-  .content { margin-left:240px; padding:50px 30px; }
-
-  /* SESSÕES */
-  section { padding:80px 20px 60px; opacity:0; transform:translateY(40px); transition:all 1s ease; }
-  section.show { opacity:1; transform:translateY(0); }
-  .section-title { text-align:center; font-size:2em; margin-bottom:40px; color:#ff5722; }
-
-  /* BOXES */
-  .info-box, .day-box, .tips-box {
-    background:white; border-radius:15px; padding:20px; margin-bottom:30px;
-    box-shadow:0 6px 15px rgba(0,0,0,0.1); transition: transform 0.3s;
-  }
-  .info-box:hover, .day-box:hover, .tips-box:hover { transform:translateY(-5px); }
-  .day-box h3 { margin-bottom:15px; color:#ff8c42; }
-  .day-box ul { list-style:inside disc; margin-bottom:10px; }
-  .day-box ul li, .tips-box ul li { margin-bottom:8px; }
-
-  /* BOTÃO TOPO */
-  #topBtn {
-    position:fixed; bottom:40px; right:40px; display:none; padding:15px;
-    background-color:#ff8c42; color:white; border:none; border-radius:50%;
-    cursor:pointer; font-size:18px; transition:0.3s; z-index:100;
-  }
-  #topBtn:hover { background:#e64a19; transform:scale(1.1); }
-
-  /* FOOTER */
-  footer { background:#ff5722; color:white; text-align:center; padding:20px 0; margin-top:40px; }
-
-  /* ICONE E EMOJI */
-  .icon { margin-right:8px; }
-
-  /* RESPONSIVO */
-  @media(max-width:768px){
-    .menu { width:100%; height:auto; position:relative; padding:0; }
-    .menu ul { flex-direction:row; justify-content:center; flex-wrap:wrap; }
-    .menu ul li { margin:5px; }
-    .content { margin-left:0; padding-top:20px; }
-  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+  body{scroll-behavior:smooth;background:#f9f9f9;color:#333;}
+  .menu{position:fixed;top:0;left:0;width:220px;height:100%;background:#ff8c42;padding-top:20px;z-index:1000;box-shadow:2px 0 10px rgba(0,0,0,0.2);}
+  .menu ul{list-style:none;display:flex;flex-direction:column;}
+  .menu ul li{margin-bottom:10px;}
+  .menu ul li a{display:block;padding:12px 20px;color:white;text-decoration:none;font-weight:bold;border-radius:8px;transition:0.3s;}
+  .menu ul li a.active, .menu ul li a:hover{background:#e64a19;}
+  .content{margin-left:240px;padding:40px 30px;}
+  section{padding:80px 20px 60px;opacity:0;transform:translateY(40px);transition:all 0.8s ease;}
+  section.show{opacity:1;transform:translateY(0);}
+  .section-title{text-align:center;font-size:2em;margin-bottom:40px;color:#ff5722;}
+  .info-box,.day-box,.tips-box{background:white;border-radius:15px;padding:20px;margin-bottom:30px;box-shadow:0 6px 15px rgba(0,0,0,0.1);transition: transform 0.3s;}
+  .info-box:hover,.day-box:hover,.tips-box:hover{transform:translateY(-5px);}
+  .day-box h3{margin-bottom:15px;color:#ff8c42;}
+  .day-box ul,.tips-box ul{list-style:inside disc;margin-bottom:10px;}
+  .day-box ul li,.tips-box ul li{margin-bottom:8px;}
+  #topBtn{position:fixed;bottom:40px;right:40px;display:none;padding:15px;background-color:#ff8c42;color:white;border:none;border-radius:50%;cursor:pointer;font-size:18px;transition:0.3s;z-index:100;}
+  #topBtn:hover{background:#e64a19;transform:scale(1.1);}
+  footer{background:#ff5722;color:white;text-align:center;padding:20px 0;margin-top:40px;}
+  @media(max-width:768px){.menu{width:100%;height:auto;position:relative;padding:0;}.menu ul{flex-direction:row;justify-content:center;flex-wrap:wrap;}.menu ul li{margin:5px;}.content{margin-left:0;padding-top:20px;}}
 </style>
 </head>
 <body>
 
-<!-- MENU LATERAL -->
 <nav class="menu">
   <ul>
     <li><a href="#hotel" class="active">Hotel</a></li>
@@ -80,8 +42,6 @@
 </nav>
 
 <div class="content">
-
-  <!-- HOTEL -->
   <section id="hotel">
     <h2 class="section-title">📍 Informações do Hotel Riu Karamboa</h2>
     <div class="info-box">
@@ -94,7 +54,6 @@
     </div>
   </section>
 
-  <!-- DIA 1 -->
   <section id="dia1">
     <h2 class="section-title">🗓️ DIA 1 – Chegada e relax no resort</h2>
     <div class="day-box">
@@ -107,7 +66,6 @@
     </div>
   </section>
 
-  <!-- DIA 2 -->
   <section id="dia2">
     <h2 class="section-title">🗓️ DIA 2 – Deserto de Viana e Norte da Ilha</h2>
     <div class="day-box">
@@ -120,7 +78,6 @@
     </div>
   </section>
 
-  <!-- DIA 3 -->
   <section id="dia3">
     <h2 class="section-title">🗓️ DIA 3 – Tour 4x4 pelo Sul da Ilha</h2>
     <div class="day-box">
@@ -132,7 +89,6 @@
     </div>
   </section>
 
-  <!-- DIA 4 -->
   <section id="dia4">
     <h2 class="section-title">🗓️ DIA 4 – Snorkeling ou passeio de barco</h2>
     <div class="day-box">
@@ -147,7 +103,6 @@
     </div>
   </section>
 
-  <!-- DIA 5 -->
   <section id="dia5">
     <h2 class="section-title">🗓️ DIA 5 – Manhã livre e retorno</h2>
     <div class="day-box">
@@ -160,7 +115,6 @@
     </div>
   </section>
 
-  <!-- DICAS -->
   <section id="dicas">
     <h2 class="section-title">✅ Dicas Extras</h2>
     <div class="tips-box">
@@ -178,42 +132,32 @@
   <footer>
     <p>Roteiro Turístico Boa Vista &copy; 2025</p>
   </footer>
-
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const topBtn = document.getElementById('topBtn');
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.menu a');
+document.addEventListener('DOMContentLoaded',()=>{
+  const topBtn=document.getElementById('topBtn');
+  const sections=document.querySelectorAll('section');
+  const navLinks=document.querySelectorAll('.menu a');
 
-  window.addEventListener('scroll', () => {
-    // Botão topo
-    topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
-
-    // Seções aparecem
-    sections.forEach(section => {
-      if(section.getBoundingClientRect().top < window.innerHeight - 100){
+  window.addEventListener('scroll',()=>{
+    topBtn.style.display=window.scrollY>300?'block':'none';
+    sections.forEach(section=>{
+      if(section.getBoundingClientRect().top<window.innerHeight-100){
         section.classList.add('show');
       }
     });
-
-    // Menu ativo
-    sections.forEach(section => {
-      if(section.getBoundingClientRect().top <= 150){
-        navLinks.forEach(link => link.classList.remove('active'));
-        const activeLink = document.querySelector(`.menu a[href="#${section.id}"]`);
+    sections.forEach(section=>{
+      if(section.getBoundingClientRect().top<=150){
+        navLinks.forEach(link=>link.classList.remove('active'));
+        const activeLink=document.querySelector(`.menu a[href="#${section.id}"]`);
         if(activeLink) activeLink.classList.add('active');
       }
     });
   });
 
-  // Scroll topo
-  topBtn.addEventListener('click', () => {
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
+  topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 });
 </script>
-
 </body>
 </html>
