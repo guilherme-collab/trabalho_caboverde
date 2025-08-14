@@ -1,75 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roteiro Boa Vista - Cabo Verde</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro Boa Vista - Cabo Verde</title>
 
-  <style>
-    /* Reset e fonte */
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-    body { scroll-behavior: smooth; background:#f9f9f9; color:#333; }
+<style>
+  /* Reset e fonte */
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+  body { scroll-behavior: smooth; color:#333; background:#f9f9f9; }
 
-    /* MENU FIXO */
-    .menu {
-      position: fixed; top:0; width:100%; background:#ff8c42; z-index:1000;
-      box-shadow:0 4px 10px rgba(0,0,0,0.2);
-    }
-    .menu ul { display:flex; justify-content:center; list-style:none; flex-wrap:wrap; }
-    .menu ul li { margin:0 10px; }
-    .menu ul li a {
-      display:block; padding:12px 18px; color:white; text-decoration:none;
-      font-weight:bold; border-radius:8px; transition:0.3s;
-    }
-    .menu ul li a.active, .menu ul li a:hover { background:#e64a19; }
+  /* MENU LATERAL FIXO */
+  .menu {
+    position: fixed; top:0; left:0; width:220px; height:100%; background:#ff8c42;
+    padding-top:30px; z-index:1000; box-shadow:2px 0 10px rgba(0,0,0,0.2);
+  }
+  .menu ul { list-style:none; display:flex; flex-direction:column; }
+  .menu ul li { margin-bottom:10px; }
+  .menu ul li a {
+    display:block; padding:12px 20px; color:white; text-decoration:none;
+    font-weight:bold; border-radius:8px; transition:0.3s;
+  }
+  .menu ul li a.active, .menu ul li a:hover { background:#e64a19; }
 
-    /* SESSÕES */
-    section { padding:100px 20px 60px; opacity:0; transform:translateY(40px); transition:all 1s ease; }
-    section.show { opacity:1; transform:translateY(0); }
-    .section-title { text-align:center; font-size:2em; margin-bottom:40px; color:#ff5722; }
+  /* CONTEÚDO PRINCIPAL */
+  .content { margin-left:240px; padding:50px 30px; }
 
-    /* BOXES */
-    .info-box, .day-box, .tips-box {
-      background:white; border-radius:15px; padding:20px; margin-bottom:30px;
-      box-shadow:0 6px 15px rgba(0,0,0,0.1); transition: transform 0.3s;
-    }
-    .info-box:hover, .day-box:hover, .tips-box:hover { transform:translateY(-5px); }
+  /* SESSÕES */
+  section { padding:80px 20px 60px; opacity:0; transform:translateY(40px); transition:all 1s ease; }
+  section.show { opacity:1; transform:translateY(0); }
+  .section-title { text-align:center; font-size:2em; margin-bottom:40px; color:#ff5722; }
 
-    .day-box h3 { margin-bottom:15px; color:#ff8c42; }
-    .day-box ul { list-style:inside disc; margin-bottom:10px; }
-    .day-box ul li { margin-bottom:8px; }
-    .tips-box ul li { margin-bottom:8px; }
+  /* BOXES */
+  .info-box, .day-box, .tips-box {
+    background:white; border-radius:15px; padding:20px; margin-bottom:30px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.1); transition: transform 0.3s;
+  }
+  .info-box:hover, .day-box:hover, .tips-box:hover { transform:translateY(-5px); }
+  .day-box h3 { margin-bottom:15px; color:#ff8c42; }
+  .day-box ul { list-style:inside disc; margin-bottom:10px; }
+  .day-box ul li, .tips-box ul li { margin-bottom:8px; }
 
-    /* BOTÃO TOPO */
-    #topBtn {
-      position:fixed; bottom:40px; right:40px; display:none; padding:15px;
-      background-color:#ff8c42; color:white; border:none; border-radius:50%;
-      cursor:pointer; font-size:18px; transition:0.3s; z-index:100;
-    }
-    #topBtn:hover { background:#e64a19; transform:scale(1.1); }
+  /* BOTÃO TOPO */
+  #topBtn {
+    position:fixed; bottom:40px; right:40px; display:none; padding:15px;
+    background-color:#ff8c42; color:white; border:none; border-radius:50%;
+    cursor:pointer; font-size:18px; transition:0.3s; z-index:100;
+  }
+  #topBtn:hover { background:#e64a19; transform:scale(1.1); }
 
-    /* FOOTER */
-    footer { background:#ff5722; color:white; text-align:center; padding:20px 0; margin-top:40px; }
+  /* FOOTER */
+  footer { background:#ff5722; color:white; text-align:center; padding:20px 0; margin-top:40px; }
 
-    /* ICONE E EMOJI */
-    .icon { margin-right:8px; }
+  /* ICONE E EMOJI */
+  .icon { margin-right:8px; }
 
-  </style>
+  /* RESPONSIVO */
+  @media(max-width:768px){
+    .menu { width:100%; height:auto; position:relative; padding:0; }
+    .menu ul { flex-direction:row; justify-content:center; flex-wrap:wrap; }
+    .menu ul li { margin:5px; }
+    .content { margin-left:0; padding-top:20px; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- MENU -->
-  <nav class="menu">
-    <ul>
-      <li><a href="#hotel" class="active">Hotel</a></li>
-      <li><a href="#dia1">Dia 1</a></li>
-      <li><a href="#dia2">Dia 2</a></li>
-      <li><a href="#dia3">Dia 3</a></li>
-      <li><a href="#dia4">Dia 4</a></li>
-      <li><a href="#dia5">Dia 5</a></li>
-      <li><a href="#dicas">Dicas</a></li>
-    </ul>
-  </nav>
+<!-- MENU LATERAL -->
+<nav class="menu">
+  <ul>
+    <li><a href="#hotel" class="active">Hotel</a></li>
+    <li><a href="#dia1">Dia 1</a></li>
+    <li><a href="#dia2">Dia 2</a></li>
+    <li><a href="#dia3">Dia 3</a></li>
+    <li><a href="#dia4">Dia 4</a></li>
+    <li><a href="#dia5">Dia 5</a></li>
+    <li><a href="#dicas">Dicas</a></li>
+  </ul>
+</nav>
+
+<div class="content">
 
   <!-- HOTEL -->
   <section id="hotel">
@@ -165,44 +175,45 @@
   </section>
 
   <button id="topBtn">⬆️</button>
-
   <footer>
     <p>Roteiro Turístico Boa Vista &copy; 2025</p>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const topBtn = document.getElementById('topBtn');
-      const sections = document.querySelectorAll('section');
-      const navLinks = document.querySelectorAll('.menu a');
+</div>
 
-      window.addEventListener('scroll', () => {
-        // Mostrar botão topo
-        topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const topBtn = document.getElementById('topBtn');
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.menu a');
 
-        // Aparecer seções
-        sections.forEach(section => {
-          if(section.getBoundingClientRect().top < window.innerHeight - 100){
-            section.classList.add('show');
-          }
-        });
+  window.addEventListener('scroll', () => {
+    // Botão topo
+    topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
 
-        // Menu ativo
-        sections.forEach(section => {
-          if(section.getBoundingClientRect().top <= 150){
-            navLinks.forEach(link => link.classList.remove('active'));
-            const activeLink = document.querySelector(`.menu a[href="#${section.id}"]`);
-            if(activeLink) activeLink.classList.add('active');
-          }
-        });
-      });
-
-      // Scroll topo
-      topBtn.addEventListener('click', () => {
-        window.scrollTo({top:0, behavior:'smooth'});
-      });
+    // Seções aparecem
+    sections.forEach(section => {
+      if(section.getBoundingClientRect().top < window.innerHeight - 100){
+        section.classList.add('show');
+      }
     });
-  </script>
+
+    // Menu ativo
+    sections.forEach(section => {
+      if(section.getBoundingClientRect().top <= 150){
+        navLinks.forEach(link => link.classList.remove('active'));
+        const activeLink = document.querySelector(`.menu a[href="#${section.id}"]`);
+        if(activeLink) activeLink.classList.add('active');
+      }
+    });
+  });
+
+  // Scroll topo
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+</script>
 
 </body>
 </html>
