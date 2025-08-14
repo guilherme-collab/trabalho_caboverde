@@ -3,68 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia Turístico Cabo Verde</title>
+  <title>Roteiro Boa Vista - Cabo Verde</title>
 
   <style>
     /* Reset e fonte */
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-    body { scroll-behavior: smooth; }
+    body { scroll-behavior: smooth; background:#f9f9f9; color:#333; }
 
     /* MENU FIXO */
     .menu {
       position: fixed; top:0; width:100%; background:#ff8c42; z-index:1000;
       box-shadow:0 4px 10px rgba(0,0,0,0.2);
     }
-    .menu ul { display:flex; justify-content:center; list-style:none; }
-    .menu ul li { margin:0 15px; }
+    .menu ul { display:flex; justify-content:center; list-style:none; flex-wrap:wrap; }
+    .menu ul li { margin:0 10px; }
     .menu ul li a {
-      display:block; padding:15px 20px; color:white; text-decoration:none;
-      font-weight:bold; border-radius:10px; transition:0.3s;
+      display:block; padding:12px 18px; color:white; text-decoration:none;
+      font-weight:bold; border-radius:8px; transition:0.3s;
     }
-    .menu ul li a.active, .menu ul li a:hover { background:#ff5722; }
+    .menu ul li a.active, .menu ul li a:hover { background:#e64a19; }
 
-    /* HERO */
-    .hero {
-      height:100vh;
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-                  url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Cabo_Verde_Beach.jpg') no-repeat center center/cover;
-      display:flex; align-items:center; justify-content:center; text-align:center; color:white;
+    /* SESSÕES */
+    section { padding:100px 20px 60px; opacity:0; transform:translateY(40px); transition:all 1s ease; }
+    section.show { opacity:1; transform:translateY(0); }
+    .section-title { text-align:center; font-size:2em; margin-bottom:40px; color:#ff5722; }
+
+    /* BOXES */
+    .info-box, .day-box, .tips-box {
+      background:white; border-radius:15px; padding:20px; margin-bottom:30px;
+      box-shadow:0 6px 15px rgba(0,0,0,0.1); transition: transform 0.3s;
     }
-    .hero-content h1 { font-size:3em; margin-bottom:20px; }
-    .hero-content p { font-size:1.5em; margin-bottom:30px; }
-    .btn {
-      padding:12px 25px; background:#ff5722; color:white; text-decoration:none;
-      font-weight:bold; border-radius:10px; transition:0.3s;
-    }
-    .btn:hover { transform:scale(1.05); background:#e64a19; }
+    .info-box:hover, .day-box:hover, .tips-box:hover { transform:translateY(-5px); }
 
-    /* SESSÕES COLORIDAS */
-    .section { padding:80px 20px; opacity:0; transform:translateY(40px); transition:all 1s ease; }
-    .section.show { opacity:1; transform:translateY(0); }
-    .colorful { background:#ffd54f; }
-    .colorful-alt { background:#4fc3f7; }
-
-    /* Títulos */
-    h2 { text-align:center; margin-bottom:50px; font-size:2.2em; color:#333; }
-
-    /* ILHAS GRID */
-    .ilhas-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; }
-    .ilha-card {
-      background:white; border-radius:15px; overflow:hidden; text-align:center;
-      box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s;
-    }
-    .ilha-card img { width:100%; height:180px; object-fit:cover; }
-    .ilha-card h3 { margin:15px 0 5px; color:#ff5722; }
-    .ilha-card p { margin-bottom:15px; font-size:0.95em; padding:0 10px; }
-    .ilha-card:hover { transform:translateY(-10px); box-shadow:0 12px 25px rgba(0,0,0,0.2); }
-
-    /* GALERIA */
-    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-    .gallery img {
-      width:100%; height:200px; object-fit:cover; border-radius:15px; cursor:pointer;
-      transition:transform 0.4s, box-shadow 0.3s;
-    }
-    .gallery img:hover { transform:scale(1.05); box-shadow:0 15px 25px rgba(0,0,0,0.3); }
+    .day-box h3 { margin-bottom:15px; color:#ff8c42; }
+    .day-box ul { list-style:inside disc; margin-bottom:10px; }
+    .day-box ul li { margin-bottom:8px; }
+    .tips-box ul li { margin-bottom:8px; }
 
     /* BOTÃO TOPO */
     #topBtn {
@@ -72,13 +46,14 @@
       background-color:#ff8c42; color:white; border:none; border-radius:50%;
       cursor:pointer; font-size:18px; transition:0.3s; z-index:100;
     }
-    #topBtn:hover { background:#ff5722; transform:scale(1.1); }
+    #topBtn:hover { background:#e64a19; transform:scale(1.1); }
 
     /* FOOTER */
-    footer { background:#ff5722; color:white; text-align:center; padding:20px 0; }
+    footer { background:#ff5722; color:white; text-align:center; padding:20px 0; margin-top:40px; }
 
-    /* TYPING */
-    .typing { font-weight:bold; }
+    /* ICONE E EMOJI */
+    .icon { margin-right:8px; }
+
   </style>
 </head>
 <body>
@@ -86,79 +61,133 @@
   <!-- MENU -->
   <nav class="menu">
     <ul>
-      <li><a href="#inicio" class="active">Início</a></li>
-      <li><a href="#ilhas">Ilhas</a></li>
-      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#hotel" class="active">Hotel</a></li>
+      <li><a href="#dia1">Dia 1</a></li>
+      <li><a href="#dia2">Dia 2</a></li>
+      <li><a href="#dia3">Dia 3</a></li>
+      <li><a href="#dia4">Dia 4</a></li>
+      <li><a href="#dia5">Dia 5</a></li>
+      <li><a href="#dicas">Dicas</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
-  <section id="inicio" class="section hero">
-    <div class="hero-content">
-      <h1>Bem-vindo a Cabo Verde</h1>
-      <p>Descubra <span class="typing"></span></p>
-      <a href="#ilhas" class="btn">Explorar Ilhas</a>
+  <!-- HOTEL -->
+  <section id="hotel">
+    <h2 class="section-title">📍 Informações do Hotel Riu Karamboa</h2>
+    <div class="info-box">
+      <ul>
+        <li>🛏️ All Inclusive 24h</li>
+        <li>🏖️ Localizado à beira-mar na Praia de Chaves</li>
+        <li>🏊‍♂️ Piscina, spa, bares, restaurantes temáticos</li>
+        <li>🎯 Atividades: esportes aquáticos, shows, excursões organizadas</li>
+      </ul>
     </div>
   </section>
 
-  <!-- ILHAS -->
-  <section id="ilhas" class="section colorful">
-    <h2>Principais Ilhas</h2>
-    <div class="ilhas-grid">
-      <div class="ilha-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Sao_Vicente_Cabo_Verde.jpg" alt="São Vicente">
-        <h3>São Vicente</h3>
-        <p>Cultura musical e carnaval vibrante</p>
-      </div>
-      <div class="ilha-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Sal_Cabo_Verde.jpg" alt="Sal">
-        <h3>Sal</h3>
-        <p>Praias paradisíacas e resorts luxuosos</p>
-      </div>
-      <div class="ilha-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Boa_Vista_Cabo_Verde.jpg" alt="Boa Vista">
-        <h3>Boa Vista</h3>
-        <p>Dunas e ecoturismo</p>
-      </div>
-      <div class="ilha-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Santiago_Cabo_Verde.jpg" alt="Santiago">
-        <h3>Santiago</h3>
-        <p>História rica e capital Praia</p>
-      </div>
+  <!-- DIA 1 -->
+  <section id="dia1">
+    <h2 class="section-title">🗓️ DIA 1 – Chegada e relax no resort</h2>
+    <div class="day-box">
+      <p><strong>Objetivo:</strong> Aclimatar-se, conhecer o hotel e aproveitar a praia.</p>
+      <ul>
+        <li>Manhã: Check-in no Hotel Riu Karamboa, explore o resort, almoce no buffet.</li>
+        <li>Tarde: Caminhada na Praia de Chaves, banho de mar e descanso.</li>
+        <li>Noite: Jantar temático no restaurante do hotel e show ao vivo.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- GALERIA -->
-  <section id="galeria" class="section colorful-alt">
-    <h2>Galeria</h2>
-    <div class="gallery">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Sao_Vicente_Cabo_Verde.jpg" alt="São Vicente">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Sal_Cabo_Verde.jpg" alt="Sal">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Boa_Vista_Cabo_Verde.jpg" alt="Boa Vista">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Santiago_Cabo_Verde.jpg" alt="Santiago">
+  <!-- DIA 2 -->
+  <section id="dia2">
+    <h2 class="section-title">🗓️ DIA 2 – Deserto de Viana e Norte da Ilha</h2>
+    <div class="day-box">
+      <p><strong>Objetivo:</strong> Conhecer paisagens únicas e a natureza.</p>
+      <ul>
+        <li>Excursão de meio dia: Deserto de Viana, Rabil, Capela de Santo António, Praia de Atalanta.</li>
+        <li>Tarde: Retorno ao hotel e descanso na piscina.</li>
+        <li>Noite: Buffet e animação no hotel.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DIA 3 -->
+  <section id="dia3">
+    <h2 class="section-title">🗓️ DIA 3 – Tour 4x4 pelo Sul da Ilha</h2>
+    <div class="day-box">
+      <p><strong>Objetivo:</strong> Aventurar-se por praias intocadas e pontos exóticos.</p>
+      <ul>
+        <li>Dia inteiro: Curral Velho, Praia de Santa Mónica, Praia de Varandinha, almoço em Povoação Velha.</li>
+        <li>Noite: Relax no hotel e jantar com vista para o mar.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DIA 4 -->
+  <section id="dia4">
+    <h2 class="section-title">🗓️ DIA 4 – Snorkeling ou passeio de barco</h2>
+    <div class="day-box">
+      <p><strong>Objetivo:</strong> Explorar a vida marinha e aproveitar o mar.</p>
+      <ul>
+        <li>Opção 1: Passeio de catamarã com snorkel.</li>
+        <li>Opção 2: Observação de tartarugas (julho a outubro).</li>
+        <li>Opção 3: Atividades aquáticas no hotel (windsurf, caiaque, mergulho).</li>
+        <li>Tarde: Spa no hotel.</li>
+        <li>Noite: Jantar especial de despedida.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DIA 5 -->
+  <section id="dia5">
+    <h2 class="section-title">🗓️ DIA 5 – Manhã livre e retorno</h2>
+    <div class="day-box">
+      <p><strong>Objetivo:</strong> Curtir as últimas horas no paraíso.</p>
+      <ul>
+        <li>Manhã: Caminhada na praia, café reforçado.</li>
+        <li>Último mergulho ou drink na piscina.</li>
+        <li>Check-out e transfer para o aeroporto.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DICAS -->
+  <section id="dicas">
+    <h2 class="section-title">✅ Dicas Extras</h2>
+    <div class="tips-box">
+      <ul>
+        <li>🧴 Protetor solar forte é essencial.</li>
+        <li>👟 Leve tênis confortável.</li>
+        <li>📷 Não esqueça câmera ou celular com espaço.</li>
+        <li>💸 A moeda local é o escudo cabo-verdiano, mas o euro é aceito.</li>
+        <li>🌊 Cuidado com ondas fortes ao nadar em algumas praias.</li>
+      </ul>
     </div>
   </section>
 
   <button id="topBtn">⬆️</button>
 
   <footer>
-    <p>Guia Turístico de Cabo Verde &copy; 2025</p>
+    <p>Roteiro Turístico Boa Vista &copy; 2025</p>
   </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // BOTÃO TOPO E SCROLL
       const topBtn = document.getElementById('topBtn');
-      const sections = document.querySelectorAll('.section');
+      const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('.menu a');
 
       window.addEventListener('scroll', () => {
+        // Mostrar botão topo
         topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+
+        // Aparecer seções
         sections.forEach(section => {
           if(section.getBoundingClientRect().top < window.innerHeight - 100){
             section.classList.add('show');
           }
         });
+
+        // Menu ativo
         sections.forEach(section => {
           if(section.getBoundingClientRect().top <= 150){
             navLinks.forEach(link => link.classList.remove('active'));
@@ -168,53 +197,12 @@
         });
       });
 
+      // Scroll topo
       topBtn.addEventListener('click', () => {
         window.scrollTo({top:0, behavior:'smooth'});
       });
-
-      // LIGHTBOX GALERIA
-      document.querySelectorAll('.gallery img').forEach(img => {
-        img.addEventListener('click', () => {
-          const lightbox = document.createElement('div');
-          lightbox.id='lightbox';
-          Object.assign(lightbox.style,{
-            position:'fixed', top:0, left:0,
-            width:'100%', height:'100%',
-            background:'rgba(0,0,0,0.85)',
-            display:'flex', justifyContent:'center', alignItems:'center',
-            zIndex:'1000', cursor:'pointer'
-          });
-          lightbox.addEventListener('click', ()=>lightbox.remove());
-          const imgClone = img.cloneNode();
-          imgClone.style.maxWidth='90%';
-          imgClone.style.maxHeight='90%';
-          imgClone.style.borderRadius='10px';
-          lightbox.appendChild(imgClone);
-          document.body.appendChild(lightbox);
-        });
-      });
-
-      // TYPING HERO
-      const typingEl = document.querySelector('.typing');
-      const phrases = ["praias paradisíacas", "cultura vibrante", "história fascinante"];
-      let i=0,j=0,current='',isDeleting=false;
-      function type(){
-        const full = phrases[i];
-        if(!isDeleting){
-          current = full.slice(0,j+1);
-          typingEl.textContent = current;
-          j++;
-          if(j===full.length){ isDeleting=true; setTimeout(type,1500); return; }
-        } else {
-          current = full.slice(0,j-1);
-          typingEl.textContent = current;
-          j--;
-          if(j===0){ isDeleting=false; i++; if(i>=phrases.length)i=0; }
-        }
-        setTimeout(type,isDeleting?50:120);
-      }
-      type();
     });
   </script>
+
 </body>
 </html>
