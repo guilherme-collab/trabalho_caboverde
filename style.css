@@ -7,82 +7,83 @@
 }
 
 body {
-  background-color: #fdfdfd;
-  color: #333;
   scroll-behavior: smooth;
 }
 
-/* Header Hero */
-header {
+/* MENU FIXO */
+.menu {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: rgba(0, 168, 150, 0.9);
-  color: white;
-  text-align: center;
-  padding: 20px;
-  z-index: 100;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: #ff8c42;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-header h1 {
-  font-size: 2.5em;
-  margin-bottom: 5px;
-}
-
-.hero-subtitle {
-  font-size: 1.2em;
-  font-weight: 400;
-}
-
-/* Menu */
-nav {
+.menu ul {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
-  background-color: #00a896;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  position: sticky;
-  top: 70px;
-  z-index: 99;
+  list-style: none;
 }
 
-nav a {
+.menu ul li {
+  margin: 0 15px;
+}
+
+.menu ul li a {
+  display: block;
+  padding: 15px 20px;
   color: white;
-  padding: 15px 25px;
   text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
   transition: 0.3s;
 }
 
-nav a.active,
-nav a:hover {
-  background-color: #028090;
-  border-radius: 8px;
+.menu ul li a.active,
+.menu ul li a:hover {
+  background: #ff5722;
 }
 
-/* Hero Section */
+/* HERO */
 .hero {
   height: 100vh;
-  background: url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Cabo_Verde_Beach.jpg') no-repeat center center/cover;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Cabo_Verde_Beach.jpg') no-repeat center center/cover;
   display: flex;
-  justify-content: center;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  text-align: center;
+  color: white;
 }
 
-.hero-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
-  animation: fadeIn 2s ease forwards;
+.hero-content h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
 }
 
-/* Seções */
+.hero-content p {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 12px 25px;
+  background: #ff5722;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background: #e64a19;
+}
+
+/* SESSÕES COLORIDAS */
 .section {
   padding: 80px 20px;
-  max-width: 1200px;
-  margin: auto;
   opacity: 0;
   transform: translateY(40px);
   transition: all 1s ease;
@@ -93,27 +94,31 @@ nav a:hover {
   transform: translateY(0);
 }
 
+.colorful { background: #ffd54f; }
+.colorful-alt { background: #4fc3f7; }
+
+/* Títulos */
 h2 {
   text-align: center;
-  font-size: 2.2em;
-  color: #028090;
   margin-bottom: 50px;
+  font-size: 2.2em;
+  color: #333;
 }
 
-/* Ilhas Cards */
+/* ILHAS GRID */
 .ilhas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 25px;
 }
 
 .ilha-card {
-  background: #f9f9f9;
+  background: white;
   border-radius: 15px;
   overflow: hidden;
+  text-align: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
 }
 
 .ilha-card img {
@@ -124,7 +129,7 @@ h2 {
 
 .ilha-card h3 {
   margin: 15px 0 5px;
-  color: #05668d;
+  color: #ff5722;
 }
 
 .ilha-card p {
@@ -138,10 +143,10 @@ h2 {
   box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
-/* Galeria */
+/* GALERIA */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
   gap: 20px;
 }
 
@@ -150,8 +155,8 @@ h2 {
   height: 200px;
   object-fit: cover;
   border-radius: 15px;
-  transition: transform 0.4s, box-shadow 0.3s;
   cursor: pointer;
+  transition: transform 0.4s, box-shadow 0.3s;
 }
 
 .gallery img:hover {
@@ -159,14 +164,14 @@ h2 {
   box-shadow: 0 15px 25px rgba(0,0,0,0.3);
 }
 
-/* Botão Topo */
+/* BOTÃO TOPO */
 #topBtn {
   position: fixed;
   bottom: 40px;
   right: 40px;
   display: none;
   padding: 15px;
-  background-color: #00a896;
+  background-color: #ff8c42;
   color: white;
   border: none;
   border-radius: 50%;
@@ -177,24 +182,19 @@ h2 {
 }
 
 #topBtn:hover {
-  background-color: #028090;
+  background: #ff5722;
   transform: scale(1.1);
 }
 
-/* Footer */
+/* FOOTER */
 footer {
-  background-color: #028090;
+  background: #ff5722;
   color: white;
   text-align: center;
-  padding: 25px 0;
-  margin-top: 50px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+  padding: 20px 0;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* TYPING */
+.typing {
+  font-weight: bold;
 }

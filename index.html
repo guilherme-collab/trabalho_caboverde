@@ -3,29 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia Turístico de Cabo Verde</title>
+  <title>Guia Turístico Cabo Verde</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Guia Turístico de Cabo Verde</h1>
-  <p class="hero-subtitle">Explore <span class="typing"></span></p>
-</header>
-
-<nav>
-  <a href="#inicio" class="active">Início</a>
-  <a href="#ilhas">Ilhas</a>
-  <a href="#galeria">Galeria</a>
+<!-- MENU DE SESSÕES -->
+<nav class="menu">
+  <ul>
+    <li><a href="#inicio" class="active">Início</a></li>
+    <li><a href="#ilhas">Ilhas</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+  </ul>
 </nav>
 
-<!-- Hero -->
-<section id="inicio" class="hero">
-  <div class="hero-overlay"></div>
+<!-- SESSÃO HERO -->
+<section id="inicio" class="section hero">
+  <div class="hero-content">
+    <h1>Bem-vindo a Cabo Verde</h1>
+    <p>Descubra <span class="typing"></span></p>
+    <a href="#ilhas" class="btn">Explorar Ilhas</a>
+  </div>
 </section>
 
-<!-- Ilhas -->
-<section id="ilhas" class="section">
+<!-- SESSÃO ILHAS -->
+<section id="ilhas" class="section colorful">
   <h2>Principais Ilhas</h2>
   <div class="ilhas-grid">
     <div class="ilha-card">
@@ -41,7 +43,7 @@
     <div class="ilha-card">
       <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Boa_Vista_Cabo_Verde.jpg" alt="Boa Vista">
       <h3>Boa Vista</h3>
-      <p>Dunas, aventura e ecoturismo</p>
+      <p>Dunas e ecoturismo</p>
     </div>
     <div class="ilha-card">
       <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Santiago_Cabo_Verde.jpg" alt="Santiago">
@@ -51,8 +53,8 @@
   </div>
 </section>
 
-<!-- Galeria -->
-<section id="galeria" class="section">
+<!-- SESSÃO GALERIA -->
+<section id="galeria" class="section colorful-alt">
   <h2>Galeria</h2>
   <div class="gallery">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Sao_Vicente_Cabo_Verde.jpg" alt="São Vicente">
