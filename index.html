@@ -8,13 +8,15 @@
   /* RESET E FONTES */
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-  /* FUNDO ANIMADO */
+  /* FUNDO ANIMADO GRADIENTE */
   body {
     scroll-behavior: smooth;
     background: linear-gradient(-45deg, #ffecd2, #fcb69f, #ff9a9e, #fad0c4);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     color: #333;
+    position: relative;
+    overflow-x: hidden;
   }
 
   @keyframes gradientBG {
@@ -33,6 +35,21 @@
     opacity:0.1; 
     z-index:0;
     pointer-events:none;
+  }
+
+  /* BOLHAS FLUTUANTES */
+  .bubble{
+    position: fixed;
+    bottom: -50px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    pointer-events:none;
+    animation: rise linear infinite;
+    z-index:0;
+  }
+  @keyframes rise{
+    0%{transform: translateY(0) scale(1);}
+    100%{transform: translateY(-120vh) scale(1.2);}
   }
 
   /* MENU LATERAL FIXO */
@@ -210,6 +227,20 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 
   topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  // GERAR BOLHAS
+  const bubbleCount=25;
+  for(let i=0;i<bubbleCount;i++){
+    const bubble=document.createElement('div');
+    bubble.classList.add('bubble');
+    let size=Math.random()*20+10;
+    bubble.style.width=size+'px';
+    bubble.style.height=size+'px';
+    bubble.style.left=Math.random()*100+'vw';
+    bubble.style.animationDuration=(Math.random()*10+5)+'s';
+    bubble.style.opacity=Math.random()*0.4+0.1;
+    document.body.appendChild(bubble);
+  }
 });
 </script>
 </body>
