@@ -1,280 +1,271 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Guia Turístico – Cabo Verde</title>
-  <style>
-    :root{
-      --bg: #0b204a; --red: #d81f29; --white: #ffffff; --gold: #ffcd00; --ink: #0e1320;
-      --muted: #6b7280; --card: rgba(255,255,255,.88); --glass: rgba(255,255,255,.35);
-      --accent: #1e90ff; --ok: #10b981; --shadow: 0 10px 25px rgba(0,0,0,.25); --radius: 18px;
-    }
-    *{ box-sizing: border-box }
-    html, body { height: 100% }
-    body{ margin:0; font-family: system-ui, sans-serif; color: var(--ink); background:#001b4d; overflow-x:hidden; }
-    .flag-bg{ position: fixed; inset:0; z-index:-2; } .flag-bg svg{ width:100%; height:100%; display:block }
-    .flag-overlay{ position: fixed; inset:0; z-index:-1; background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.45)); }
-    header{ position: sticky; top:0; z-index:10; backdrop-filter: blur(10px); background: linear-gradient(90deg, rgba(255,255,255,.7), rgba(255,255,255,.4)); border-bottom: 1px solid rgba(255,255,255,.6); }
-    .container{ max-width: 1100px; margin: 0 auto; padding: 18px 20px; }
-    .brand{ display:flex; align-items:center; gap:12px; }
-    .brand .logo{ width:34px; height:34px; border-radius: 10px; background: conic-gradient(from 0deg, var(--gold), #ffd74d); box-shadow: inset 0 0 0 3px #fff8; }
-    .brand h1{ font-size: clamp(18px, 2.5vw, 24px); margin:0; letter-spacing:.2px }
-    .hero{ padding: 36px 20px 10px; text-align:center; color:#fff; }
-    .hero h2{ font-size: clamp(28px, 4.2vw, 44px); margin:0 0 8px; }
-    .hero p{ margin:0; opacity:.9 }
-    .switcher{ margin: 18px auto 0; display:inline-flex; background: var(--glass); border:1px solid #fff8; border-radius: 999px; overflow:hidden; box-shadow: var(--shadow) }
-    .switcher button{ padding: 10px 18px; font-weight: 600; border:0; cursor:pointer; background: transparent; color:#fff; letter-spacing:.3px }
-    .switcher button.active{ background:#fff; color:#0b204a }
-    .grid{ display:grid; gap:18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 22px; }
-    .card{ background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
-    .card .cover{ height:140px; background: #eee center/cover no-repeat; position: relative; }
-    .badge{ position:absolute; top:10px; left:10px; background: #0b204a; color:#fff; padding:6px 10px; border-radius:999px; font-size:12px; box-shadow: 0 6px 14px rgba(0,0,0,.25) }
-    .card .content{ padding:16px }
-    .content h3{ margin:6px 0 8px }
-    .pill{ display:inline-flex; gap:6px; align-items:center; background:#0b204a; color:#fff; padding:6px 10px; border-radius:999px; font-size:12px }
-    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
-    .tag{ font-size:12px; padding:6px 10px; border-radius:999px; background: #e6eefc; }
-    .card .actions{ display:flex; gap:10px; padding:14px 16px 16px; margin-top:auto }
-    .btn{ flex:1; padding:12px 14px; border-radius:12px; border:0; cursor:pointer; font-weight:700 }
-    .btn.primary{ background: var(--accent); color:#fff }
-    .btn.ghost{ background: transparent; border: 2px solid #0b204a; color:#0b204a }
-    .section{ margin: 26px 0 4px }
-    .section h4{ color:#fff; margin:0 0 6px }
-    .calc{ background: var(--card); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); display:grid; gap:14px; grid-template-columns: 1fr 1fr 1fr; align-items:end }
-    .calc label{ font-size:12px; color:#111 }
-    .calc input, .calc select{ width:100%; padding:10px 12px; border-radius:10px; border:1px solid #dbe1f0; outline:none }
-    .calc .total{ grid-column: 1/-1; display:flex; justify-content:space-between; align-items:center; padding-top:6px; border-top:1px dashed #c7d2fe }
-    .price{ font-size: clamp(22px, 3.2vw, 32px); font-weight:800; color:#0b204a }
-    dialog{ border:0; border-radius: 18px; padding:0; width:min(760px, 92vw); box-shadow: var(--shadow); background:#fff }
-    dialog::backdrop{ background: rgba(0,0,0,.5); }
-    .modal-head{ display:flex; justify-content:space-between; align-items:center; padding:14px 18px; background:#0b204a; color:#fff }
-    .modal-body{ padding:16px 18px 20px }
-    .timeline{ position:relative; margin:10px 0 0; padding-left:22px }
-    .timeline::before{ content:""; position:absolute; left:9px; top:0; bottom:0; width:2px; background:#dbeafe }
-    .event{ margin: 0 0 14px; position:relative }
-    .event::before{ content:""; position:absolute; left:-15px; top:2px; width:10px; height:10px; border-radius:50%; background:#0b204a }
-    .event h5{ margin:0 0 4px }
-    .event img { width: 100%; height: auto; border-radius: 10px; margin-bottom: 10px; }
-    footer{ color:#fff; opacity:.9; text-align:center; padding: 30px 10px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guia Turístico – Cabo Verde</title>
+  <style>
+    :root{
+      --bg: #0b204a; --red: #d81f29; --white: #ffffff; --gold: #ffcd00; --ink: #0e1320;
+      --muted: #6b7280; --card: rgba(255,255,255,.88); --glass: rgba(255,255,255,.35);
+      --accent: #1e90ff; --ok: #10b981; --shadow: 0 10px 25px rgba(0,0,0,.25); --radius: 18px;
+    }
+    *{ box-sizing: border-box }
+    html, body { height: 100% }
+    body{ margin:0; font-family: system-ui, sans-serif; color: var(--ink); background:#001b4d; overflow-x:hidden; }
+    .flag-bg{ position: fixed; inset:0; z-index:-2; } .flag-bg svg{ width:100%; height:100%; display:block }
+    .flag-overlay{ position: fixed; inset:0; z-index:-1; background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.45)); }
+    header{ position: sticky; top:0; z-index:10; backdrop-filter: blur(10px); background: linear-gradient(90deg, rgba(255,255,255,.7), rgba(255,255,255,.4)); border-bottom: 1px solid rgba(255,255,255,.6); }
+    .container{ max-width: 1100px; margin: 0 auto; padding: 18px 20px; }
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .brand .logo{ width:34px; height:34px; border-radius: 10px; background: conic-gradient(from 0deg, var(--gold), #ffd74d); box-shadow: inset 0 0 0 3px #fff8; }
+    .brand h1{ font-size: clamp(18px, 2.5vw, 24px); margin:0; letter-spacing:.2px }
+    .hero{ padding: 36px 20px 10px; text-align:center; color:#fff; }
+    .hero h2{ font-size: clamp(28px, 4.2vw, 44px); margin:0 0 8px; }
+    .hero p{ margin:0; opacity:.9 }
+    .switcher{ margin: 18px auto 0; display:inline-flex; background: var(--glass); border:1px solid #fff8; border-radius: 999px; overflow:hidden; box-shadow: var(--shadow) }
+    .switcher button{ padding: 10px 18px; font-weight: 600; border:0; cursor:pointer; background: transparent; color:#fff; letter-spacing:.3px }
+    .switcher button.active{ background:#fff; color:#0b204a }
+    .grid{ display:grid; gap:18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 22px; }
+    .card{ background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
+    .card .cover{ height:140px; background: #eee center/cover no-repeat; position: relative; }
+    .badge{ position:absolute; top:10px; left:10px; background: #0b204a; color:#fff; padding:6px 10px; border-radius:999px; font-size:12px; box-shadow: 0 6px 14px rgba(0,0,0,.25) }
+    .card .content{ padding:16px }
+    .content h3{ margin:6px 0 8px }
+    .pill{ display:inline-flex; gap:6px; align-items:center; background:#0b204a; color:#fff; padding:6px 10px; border-radius:999px; font-size:12px }
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
+    .tag{ font-size:12px; padding:6px 10px; border-radius:999px; background: #e6eefc; }
+    .card .actions{ display:flex; gap:10px; padding:14px 16px 16px; margin-top:auto }
+    .btn{ flex:1; padding:12px 14px; border-radius:12px; border:0; cursor:pointer; font-weight:700 }
+    .btn.primary{ background: var(--accent); color:#fff }
+    .btn.ghost{ background: transparent; border: 2px solid #0b204a; color:#0b204a }
+    .section{ margin: 26px 0 4px }
+    .section h4{ color:#fff; margin:0 0 6px }
+    .calc{ background: var(--card); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); display:grid; gap:14px; grid-template-columns: 1fr 1fr 1fr; align-items:end }
+    .calc label{ font-size:12px; color:#111 }
+    .calc input, .calc select{ width:100%; padding:10px 12px; border-radius:10px; border:1px solid #dbe1f0; outline:none }
+    .calc .total{ grid-column: 1/-1; display:flex; justify-content:space-between; align-items:center; padding-top:6px; border-top:1px dashed #c7d2fe }
+    .price{ font-size: clamp(22px, 3.2vw, 32px); font-weight:800; color:#0b204a }
+    dialog{ border:0; border-radius: 18px; padding:0; width:min(760px, 92vw); box-shadow: var(--shadow); background:#fff }
+    dialog::backdrop{ background: rgba(0,0,0,.5); }
+    .modal-head{ display:flex; justify-content:space-between; align-items:center; padding:14px 18px; background:#0b204a; color:#fff }
+    .modal-body{ padding:16px 18px 20px }
+    .timeline{ position:relative; margin:10px 0 0; padding-left:22px }
+    .timeline::before{ content:""; position:absolute; left:9px; top:0; bottom:0; width:2px; background:#dbeafe }
+    .event{ margin: 0 0 14px; position:relative }
+    .event::before{ content:""; position:absolute; left:-15px; top:2px; width:10px; height:10px; border-radius:50%; background:#0b204a }
+    .event h5{ margin:0 0 4px }
+    footer{ color:#fff; opacity:.9; text-align:center; padding: 30px 10px; }
+  </style>
 </head>
 <body>
-    <div class="flag-bg" aria-hidden="true">
-    <svg viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice">
-      <rect width="900" height="600" fill="#002780"/>
-      <rect y="260" width="900" height="28" fill="#ffffff"/>
-      <rect y="312" width="900" height="28" fill="#D81F29"/>
-      <rect y="364" width="900" height="28" fill="#ffffff"/>
-      <g fill="#FFCC00" transform="translate(260,300) scale(1.08)">
-        <g id="s">
-          <g transform="scale(10)"><path d="M0-1 L0.224-0.309 L0.951-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951-0.309 L-0.224-0.309 Z"/></g>
-        </g>
-        <g>
-          <g transform="rotate(0) translate(100,0)"><use href="#s"/></g>
-          <g transform="rotate(36) translate(100,0)"><use href="#s"/></g>
-          <g transform="rotate(72) translate(100,0)"><use href="#s"/></g>
-          <g transform="rotate(108) translate(100,0)"><use href="#s"/></g>
-          <g transform="rotate(144) translate(100,0)"><use href="#s"/></g>
-          <g transform="rotate(180) translate(100,0)"><use href="#s"/></g>
-          <g transform="rotate(216) translate(100,0)"><use href="#s"/></g>
-          <g transform="rotate(252) translate(100,0)"><use href="#s"/></g>
-          <g transform="rotate(288) translate(100,0)"><use href="#s"/></g>
-          <g transform="rotate(324) translate(100,0)"><use href="#s"/></g>
-        </g>
-      </g>
-    </svg>
-  </div>
-  <div class="flag-overlay" aria-hidden="true"></div>
+  <!-- Bandeira -->
+  <div class="flag-bg" aria-hidden="true">
+    <svg viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice">
+      <rect width="900" height="600" fill="#002780"/>
+      <rect y="260" width="900" height="28" fill="#ffffff"/>
+      <rect y="312" width="900" height="28" fill="#D81F29"/>
+      <rect y="364" width="900" height="28" fill="#ffffff"/>
+      <g fill="#FFCC00" transform="translate(260,300) scale(1.08)">
+        <g id="s">
+          <g transform="scale(10)"><path d="M0-1 L0.224-0.309 L0.951-0.309 L0.363,0.118 L0.588,0.809 L0,0.382 L-0.588,0.809 L-0.363,0.118 L-0.951-0.309 L-0.224-0.309 Z"/></g>
+        </g>
+        <g>
+          <g transform="rotate(0) translate(100,0)"><use href="#s"/></g>
+          <g transform="rotate(36) translate(100,0)"><use href="#s"/></g>
+          <g transform="rotate(72) translate(100,0)"><use href="#s"/></g>
+          <g transform="rotate(108) translate(100,0)"><use href="#s"/></g>
+          <g transform="rotate(144) translate(100,0)"><use href="#s"/></g>
+          <g transform="rotate(180) translate(100,0)"><use href="#s"/></g>
+          <g transform="rotate(216) translate(100,0)"><use href="#s"/></g>
+          <g transform="rotate(252) translate(100,0)"><use href="#s"/></g>
+          <g transform="rotate(288) translate(100,0)"><use href="#s"/></g>
+          <g transform="rotate(324) translate(100,0)"><use href="#s"/></g>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="flag-overlay" aria-hidden="true"></div>
 
-  <header>
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:16px;">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <h1>Guia Turístico – Cabo Verde</h1>
-      </div>
-      <nav aria-label="Alternar plano">
-        <div class="switcher" role="tablist">
-          <button id="btnEconomico" class="active" role="tab" aria-selected="true">Plano Econômico</button>
-          <button id="btnPremium" role="tab" aria-selected="false">Plano Premium</button>
-        </div>
-      </nav>
-    </div>
-  </header>
+  <header>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:16px;">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Guia Turístico – Cabo Verde</h1>
+      </div>
+      <nav aria-label="Alternar plano">
+        <div class="switcher" role="tablist">
+          <button id="btnEconomico" class="active" role="tab" aria-selected="true">Plano Econômico</button>
+          <button id="btnPremium" role="tab" aria-selected="false">Plano Premium</button>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-  <section class="hero">
-    <h2>Descubra ilhas incríveis com roteiros detalhados</h2>
-    <p>Incluindo atividades, comida típica e hotéis em cada dia!</p>
-  </section>
+  <section class="hero">
+    <h2>Descubra ilhas incríveis com roteiros detalhados</h2>
+    <p>Incluindo atividades, comida típica e hotéis em cada dia!</p>
+  </section>
 
-  <main class="container" id="app">
-    <div class="grid" id="cards"></div>
+  <main class="container" id="app">
+    <div class="grid" id="cards"></div>
 
-    <div class="section">
-      <h4>Calcule seu pacote</h4>
-      <div class="calc" aria-label="Calculadora de pacote">
-        <div>
-          <label for="selPlano">Plano</label>
-          <select id="selPlano">
-            <option value="economico">Econômico – Santiago + Maio</option>
-            <option value="premium">Premium – Sal + Santo Antão</option>
-          </select>
-        </div>
-        <div>
-          <label for="selNoites">Noites</label>
-          <input type="number" id="selNoites" min="3" max="14" step="1" value="6" />
-        </div>
-        <div>
-          <label for="selPessoas">Pessoas</label>
-          <input type="number" id="selPessoas" min="1" max="8" step="1" value="2" />
-        </div>
-        <div class="total">
-          <div>
-            <div style="font-size:12px; color:var(--muted)">Estimativa (voos internos, hospedagem e passeios)</div>
-            <div class="price" id="price">CVE 0</div>
-          </div>
-          <button class="btn primary" id="btnReservar">Pré-reservar</button>
-        </div>
-      </div>
-    </div>
-  </main>
+    <div class="section">
+      <h4>Calcule seu pacote</h4>
+      <div class="calc" aria-label="Calculadora de pacote">
+        <div>
+          <label for="selPlano">Plano</label>
+          <select id="selPlano">
+            <option value="economico">Econômico – Santiago + Maio</option>
+            <option value="premium">Premium – Sal + Santo Antão</option>
+          </select>
+        </div>
+        <div>
+          <label for="selNoites">Noites</label>
+          <input type="number" id="selNoites" min="3" max="14" step="1" value="6" />
+        </div>
+        <div>
+          <label for="selPessoas">Pessoas</label>
+          <input type="number" id="selPessoas" min="1" max="8" step="1" value="2" />
+        </div>
+        <div class="total">
+          <div>
+            <div style="font-size:12px; color:var(--muted)">Estimativa (voos internos, hospedagem e passeios)</div>
+            <div class="price" id="price">CVE 0</div>
+          </div>
+          <button class="btn primary" id="btnReservar">Pré-reservar</button>
+        </div>
+      </div>
+    </div>
+  </main>
 
-  <footer>
-    <small>Guilherme de Oliveira e João Santos loch</small>
-  </footer>
+  <footer>
+    <small>Guilherme de Oliveira e João Santos loch</small>
+  </footer>
 
-  <dialog id="modal">
-    <div class="modal-head">
-      <div><strong id="modalTitle">Itinerário</strong></div>
-      <button id="modalClose" class="btn" style="background:#fff; color:#0b204a; padding:6px 12px">Fechar</button>
-    </div>
-    <div class="modal-body">
-      <div class="timeline" id="timeline"></div>
-    </div>
-  </dialog>
+  <dialog id="modal">
+    <div class="modal-head">
+      <div><strong id="modalTitle">Itinerário</strong></div>
+      <button id="modalClose" class="btn" style="background:#fff; color:#0b204a; padding:6px 12px">Fechar</button>
+    </div>
+    <div class="modal-body">
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </dialog>
 
-  <script>
-    const data = {
-      economico: {
-        nome:"Plano Econômico",
-        ilhas:[
-          {nome:"Santiago", capa:"https://upload.wikimedia.org/wikipedia/commons/3/37/Pr%C3%A9sia_de_Praia%2C_Cabo_Verde.jpg", destaque:["Cidade Velha","Praias de Tarrafal","Mercados locais"], precoBaseNoite:8500,
-           roteiro:[
-             {dia:1,titulo:"Chegada a Praia", desc:"Passeio pelo Plateau e Mercado de Sucupira.", comida:"Cachupa com peixe fresco", hotel:"Hotel Oasis Praia", foto:"https://upload.wikimedia.org/wikipedia/commons/3/3d/Plateau_de_Praia.JPG"},
-             {dia:2,titulo:"Cidade Velha", desc:"Forte Real de São Filipe e rua Banana.", comida:"Guisado de cabrito", hotel:"Pousada Colonial", foto:"https://upload.wikimedia.org/wikipedia/commons/e/e7/Rua_Banana_Cidade_Velha.jpg"},
-             {dia:3,titulo:"Tarrafal", desc:"Praia e mergulho.", comida:"Frutos do mar ao pôr do sol", hotel:"Residencial Tarrafal", foto:"https://upload.wikimedia.org/wikipedia/commons/2/23/Tarrafal_Cabo_Verde_view.JPG"}
-           ]},
-          {nome:"Maio", capa:"https://upload.wikimedia.org/wikipedia/commons/8/87/Maio_Cabo_Verde.jpg", destaque:["Praias vazias","Tartarugas","Clima tranquilo"], precoBaseNoite:7800,
-           roteiro:[
-             {dia:4,titulo:"Barreira & Morro", desc:"Praias extensas de areia clara, relaxamento.", comida:"Peixe grelhado", hotel:"Hotel Maio Beach", foto:"https://upload.wikimedia.org/wikipedia/commons/7/7b/Beach_at_Vila_do_Maio%2C_Cabo_Verde.jpg"},
-             {dia:5,titulo:"Vila do Maio", desc:"Exploração da arquitetura colonial.", comida:"Cachupa tradicional", hotel:"Pousada da Vila", foto:"https://upload.wikimedia.org/wikipedia/commons/8/8a/Maio_Cabo_Verde_Village_streets.JPG"},
-             {dia:6,titulo:"Passeio ecológico", desc:"Observação de aves e tartarugas.", comida:"Mariscos locais", hotel:"Hotel Maio Eco", foto:"https://upload.wikimedia.org/wikipedia/commons/0/02/Turtle_conservation_in_Maio_Cabo_Verde.jpg"}
-           ]}
-        ]
-      },
-      premium:{
-        nome:"Plano Premium",
-        ilhas:[
-          {nome:"Sal", capa:"https://upload.wikimedia.org/wikipedia/commons/0/0e/Sal_Cabo_Verde.jpg", destaque:["Santa Maria","Ponta Preta","Salinas de Pedra de Lume"], precoBaseNoite:14500,
-           roteiro:[
-             {dia:1,titulo:"Chegada a Santa Maria", desc:"Passeio pelo pontão e restaurantes à beira-mar.", comida:"Lagosta grelhada", hotel:"Hotel Morabeza", foto:"https://upload.wikimedia.org/wikipedia/commons/0/09/Praia_de_Santa_Maria%2C_Ilha_do_Sal%2C_Cabo_Verde.jpg"},
-             {dia:2,titulo:"Ilhotas & Kite Beach", desc:"Praia com esportes aquáticos.", comida:"Peixe assado com banana", hotel:"Resort Kite", foto:"https://upload.wikimedia.org/wikipedia/commons/4/4c/Kitebeach_Sal_Cape_Verde.jpg"},
-             {dia:3,titulo:"Salinas", desc:"Flutuação nas salinas vulcânicas de Pedra de Lume.", comida:"Ceviche de peixe", hotel:"Salinas Hotel", foto:"https://upload.wikimedia.org/wikipedia/commons/5/52/Pedra_de_Lume_Salinas.jpg"}
-           ]},
-          {nome:"Santo Antão", capa:"https://upload.wikimedia.org/wikipedia/commons/6/63/Santo_Ant%C3%A3o_Cabo_Verde.jpeg", destaque:["Trilhas verdes","Vale do Paul","Ribeira Grande"], precoBaseNoite:16200,
-           roteiro:[
-             {dia:4,titulo:"Acesso via São Vicente", desc:"Travessia de barco + miradouros.", comida:"Cachupa rica", hotel:"Hotel Miradouro", foto:"https://upload.wikimedia.org/wikipedia/commons/7/7b/Ponte-de-Pedra.jpg"},
-             {dia:5,titulo:"Trilha no Vale do Paul", desc:"Cenários montanhosos e vilarejos.", comida:"Cabrito assado", hotel:"Pousada Vale do Paul", foto:"https://upload.wikimedia.org/wikipedia/commons/2/23/Vale_do_Paul%2C_Santo_Ant%C3%A3o%2C_Cabo_Verde.jpg"},
-             {dia:6,titulo:"Canyons & Costeira", desc:"Exploração leve pelas ribeiras e costa norte.", comida:"Peixe fresco com batata-doce", hotel:"Hotel Ribeira Grande", foto:"https://upload.wikimedia.org/wikipedia/commons/9/91/Cruzinha%2C_Santo_Ant%C3%A3o.jpg"}
-           ]}
-        ]
-      }
-    };
+  <script>
+    const data = {
+      economico: {
+        nome:"Plano Econômico",
+        ilhas:[
+          {nome:"Santiago", capa:"https://upload.wikimedia.org/wikipedia/commons/3/37/Pr%C3%A9sia_de_Praia%2C_Cabo_Verde.jpg", destaque:["Cidade Velha","Praias de Tarrafal","Mercados locais"], precoBaseNoite:8500,
+           roteiro:[
+             {dia:1,titulo:"Chegada a Praia", desc:"Passeio pelo Plateau e Mercado de Sucupira.", comida:"Cachupa com peixe fresco", hotel:"Hotel Oasis Praia"},
+             {dia:2,titulo:"Cidade Velha", desc:"Forte Real de São Filipe e rua Banana.", comida:"Guisado de cabrito", hotel:"Pousada Colonial"},
+             {dia:3,titulo:"Tarrafal", desc:"Praia e mergulho.", comida:"Frutos do mar ao pôr do sol", hotel:"Residencial Tarrafal"}
+           ]},
+          {nome:"Maio", capa:"https://upload.wikimedia.org/wikipedia/commons/8/87/Maio_Cabo_Verde.jpg", destaque:["Praias vazias","Tartarugas","Clima tranquilo"], precoBaseNoite:7800,
+           roteiro:[
+             {dia:4,titulo:"Barreira & Morro", desc:"Praias extensas de areia clara, relaxamento.", comida:"Peixe grelhado", hotel:"Hotel Maio Beach"},
+             {dia:5,titulo:"Vila do Maio", desc:"Exploração da arquitetura colonial.", comida:"Cachupa tradicional", hotel:"Pousada da Vila"},
+             {dia:6,titulo:"Passeio ecológico", desc:"Observação de aves e tartarugas.", comida:"Mariscos locais", hotel:"Hotel Maio Eco"}
+           ]}
+        ]
+      },
+      premium:{
+        nome:"Plano Premium",
+        ilhas:[
+          {nome:"Sal", capa:"https://upload.wikimedia.org/wikipedia/commons/0/0e/Sal_Cabo_Verde.jpg", destaque:["Santa Maria","Ponta Preta","Salinas de Pedra de Lume"], precoBaseNoite:14500,
+           roteiro:[
+             {dia:1,titulo:"Chegada a Santa Maria", desc:"Passeio pelo pontão e restaurantes à beira-mar.", comida:"Lagosta grelhada", hotel:"Hotel Morabeza"},
+             {dia:2,titulo:"Ilhotas & Kite Beach", desc:"Praia com esportes aquáticos.", comida:"Peixe assado com banana", hotel:"Resort Kite"},
+             {dia:3,titulo:"Salinas", desc:"Flutuação nas salinas vulcânicas de Pedra de Lume.", comida:"Ceviche de peixe", hotel:"Salinas Hotel"}
+           ]},
+          {nome:"Santo Antão", capa:"https://upload.wikimedia.org/wikipedia/commons/6/63/Santo_Ant%C3%A3o_Cabo_Verde.jpeg", destaque:["Trilhas verdes","Vale do Paul","Ribeira Grande"], precoBaseNoite:16200,
+           roteiro:[
+             {dia:4,titulo:"Acesso via São Vicente", desc:"Travessia de barco + miradouros.", comida:"Cachupa rica", hotel:"Hotel Miradouro"},
+             {dia:5,titulo:"Trilha no Vale do Paul", desc:"Cenários montanhosos e vilarejos.", comida:"Cabrito assado", hotel:"Pousada Vale do Paul"},
+             {dia:6,titulo:"Canyons & Costeira", desc:"Exploração leve pelas ribeiras e costa norte.", comida:"Peixe fresco com batata-doce", hotel:"Hotel Ribeira Grande"}
+           ]}
+        ]
+      }
+    };
 
-    const el = (sel)=>document.querySelector(sel);
-    const cards = el('#cards');
-    const selPlano = el('#selPlano');
-    const selNoites = el('#selNoites');
-    const selPessoas = el('#selPessoas');
-    const priceEl = el('#price');
-    const btnReservar = el('#btnReservar');
-    const modal = el('#modal');
-    const modalClose = el('#modalClose');
-    const timeline = el('#timeline');
-    const btnEconomico = el('#btnEconomico');
-    const btnPremium = el('#btnPremium');
+    const el = (sel)=>document.querySelector(sel);
+    const cards = el('#cards');
+    const selPlano = el('#selPlano');
+    const selNoites = el('#selNoites');
+    const selPessoas = el('#selPessoas');
+    const priceEl = el('#price');
+    const btnReservar = el('#btnReservar');
+    const modal = el('#modal');
+    const modalClose = el('#modalClose');
+    const timeline = el('#timeline');
+    const btnEconomico = el('#btnEconomico');
+    const btnPremium = el('#btnPremium');
 
-    let planoAtual = "economico";
+    let planoAtual = "economico";
 
-    function renderCards(){
-      const plano = data[planoAtual];
-      cards.innerHTML = "";
-      plano.ilhas.forEach(ilha=>{
-        const div = document.createElement('div');
-        div.className="card";
-        div.innerHTML=`
-          <div class="cover" style="background-image:url(${ilha.capa})">
-            <div class="badge">${ilha.nome}</div>
-          </div>
-          <div class="content">
-            <h3>${ilha.nome}</h3>
-            <div class="tags">${ilha.destaque.map(d=>`<div class="tag">${d}</div>`).join('')}</div>
-          </div>
-          <div class="actions">
-            <button class="btn ghost" onclick='openModal(${JSON.stringify(ilha.roteiro).replace(/'/g,"\\'")});'>Ver Roteiro</button>
-          </div>
-        `;
-        cards.appendChild(div);
-      });
-    }
+    function renderCards(){
+      const plano = data[planoAtual];
+      cards.innerHTML = "";
+      plano.ilhas.forEach(ilha=>{
+        const div = document.createElement('div');
+        div.className="card";
+        div.innerHTML=`
+          <div class="cover" style="background-image:url(${ilha.capa})">
+            <div class="badge">${ilha.nome}</div>
+          </div>
+          <div class="content">
+            <h3>${ilha.nome}</h3>
+            <div class="tags">${ilha.destaque.map(d=>`<div class="tag">${d}</div>`).join('')}</div>
+          </div>
+          <div class="actions">
+            <button class="btn ghost" onclick='openModal(${JSON.stringify(ilha.roteiro).replace(/'/g,"\\'")});'>Ver Roteiro</button>
+          </div>
+        `;
+        cards.appendChild(div);
+      });
+    }
 
-    function updatePrice(){
-      const plano = data[planoAtual];
-      let total=0;
-      plano.ilhas.forEach(ilha=>{
-        total += ilha.precoBaseNoite * selNoites.value * selPessoas.value;
-      });
-      priceEl.textContent = `CVE ${total.toLocaleString()}`;
-    }
-    
-    // Função modificada para incluir fotos
-    function openModal(rota){
-      timeline.innerHTML="";
-      rota.forEach(ev=>{
-        const div = document.createElement('div');
-        div.className="event";
-        // Verifica se a foto existe e cria o HTML da imagem
-        const imageHtml = ev.foto ? `<img src="${ev.foto}" alt="Imagem do roteiro no dia ${ev.dia}">` : '';
+    function updatePrice(){
+      const plano = data[planoAtual];
+      let total=0;
+      plano.ilhas.forEach(ilha=>{
+        total += ilha.precoBaseNoite * selNoites.value * selPessoas.value;
+      });
+      priceEl.textContent = `CVE ${total.toLocaleString()}`;
+    }
 
-        div.innerHTML=`
-          ${imageHtml}
-          <h5>Dia ${ev.dia}: ${ev.titulo}</h5>
-          <p>${ev.desc}</p>
-          <p><strong>Comida:</strong> ${ev.comida} | <strong>Hotel:</strong> ${ev.hotel}</p>
-        `;
-        timeline.appendChild(div);
-      });
-      modal.showModal();
-    }
+    function openModal(rota){
+      timeline.innerHTML="";
+      rota.forEach(ev=>{
+        const div = document.createElement('div');
+        div.className="event";
+        div.innerHTML=`<h5>Dia ${ev.dia}: ${ev.titulo}</h5><p>${ev.desc}</p><p><strong>Comida:</strong> ${ev.comida} | <strong>Hotel:</strong> ${ev.hotel}</p>`;
+        timeline.appendChild(div);
+      });
+      modal.showModal();
+    }
 
-    modalClose.addEventListener('click',()=>modal.close());
+    modalClose.addEventListener('click',()=>modal.close());
 
-    selPlano.addEventListener('change',e=>{
-      planoAtual=e.target.value;
-      renderCards();
-      updatePrice();
-      btnEconomico.classList.toggle('active',planoAtual==='economico');
-      btnPremium.classList.toggle('active',planoAtual==='premium');
-    });
+    selPlano.addEventListener('change',e=>{
+      planoAtual=e.target.value;
+      renderCards();
+      updatePrice();
+      btnEconomico.classList.toggle('active',planoAtual==='economico');
+      btnPremium.classList.toggle('active',planoAtual==='premium');
+    });
 
-    selNoites.addEventListener('input',updatePrice);
-    selPessoas.addEventListener('input',updatePrice);
+    selNoites.addEventListener('input',updatePrice);
+    selPessoas.addEventListener('input',updatePrice);
 
-    btnEconomico.addEventListener('click',()=>{planoAtual="economico"; selPlano.value="economico"; renderCards(); updatePrice(); btnEconomico.classList.add('active'); btnPremium.classList.remove('active'); });
-    btnPremium.addEventListener('click',()=>{planoAtual="premium"; selPlano.value="premium"; renderCards(); updatePrice(); btnPremium.classList.add('active'); btnEconomico.classList.remove('active'); });
+    btnEconomico.addEventListener('click',()=>{planoAtual="economico"; selPlano.value="economico"; renderCards(); updatePrice(); btnEconomico.classList.add('active'); btnPremium.classList.remove('active'); });
+    btnPremium.addEventListener('click',()=>{planoAtual="premium"; selPlano.value="premium"; renderCards(); updatePrice(); btnPremium.classList.add('active'); btnEconomico.classList.remove('active'); });
 
-    renderCards();
-    updatePrice();
-  </script>
+    renderCards();
+    updatePrice();
+  </script>
 </body>
 </html>
