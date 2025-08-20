@@ -221,7 +221,7 @@
             <div class="tags">${ilha.destaque.map(d=>`<div class="tag">${d}</div>`).join('')}</div>
           </div>
           <div class="actions">
-            <button class="btn ghost" onclick='openModal(${JSON.stringify(ilha.rota || ilha.roteiro)});'>Ver Roteiro</button>
+            <button class="btn ghost" onclick='openModal(${JSON.stringify(ilha.roteiro).replace(/'/g,"\\'")});'>Ver Roteiro</button>
           </div>
         `;
         cards.appendChild(div);
